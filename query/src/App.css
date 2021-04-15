@@ -1,9 +1,48 @@
 * {
   margin: 0;
-  font-family: -apple-system,
-    BlinkMacSystemFont, 'Segoe UI',
-    Roboto, Oxygen, Ubuntu, Cantarell,
-    'Open Sans', 'Helvetica Neue',
-    sans-serif;
-  text-align: center;
+  font-family: monospace;
+}
+#register {
+  margin: 2% 2% 0 2%;
+  box-shadow: 0.2px 2px 16px
+      rgb(236, 236, 236),
+    -10px -10px 10px 0px
+      rgb(255, 255, 255);
+}
+#form_controls_register {
+  box-shadow: 8px 8px 16px
+      rgb(248, 248, 248) inset,
+    -8px -8px 16px rgb(248, 248, 248)
+      inset !important;
+}
+#form_controls_register_submit {
+  box-shadow: 2px 2px 5px
+      rgb(219, 219, 219),
+    -2px -2px 5px rgb(255, 255, 255);
+}
+#form_controls_register:focus {
+  border: 0px lightgray solid;
+}
+#register_template {
+  display: flex;
+  align-items: center;
+}
+#image_register_div {
+  margin-left: 15%;
+}
+#image_register {
+  width: 50vh;
+  height: 50vh;
+  margin-left: 15%;
+  border-radius: 50%;
+  box-shadow: 10px 10px 10px
+    rgb(187, 187, 187);
+}
+@media screen and (max-width: 63em) {
+  #register {
+    margin: 6% 6% 6% 6%;
+  }
+  #image_register_div {
+    display: none;
+  }
 }

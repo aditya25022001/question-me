@@ -1,10 +1,11 @@
 import React from 'react';
 import './App.css';
+import { RegisterScreen } from './screens/RegisterScreen'
 
 function App() {
   return (
     <div className="App">
-      hello there quora clone
+      <RegisterScreen/>
     </div>
   );
 }
