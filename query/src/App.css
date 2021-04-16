@@ -2,47 +2,71 @@
   margin: 0;
   font-family: monospace;
 }
-#register {
-  margin: 2% 2% 0 2%;
+#register,
+#signin {
+  margin: 2% 2% 2% 2%;
   box-shadow: 0.2px 2px 16px
       rgb(236, 236, 236),
     -10px -10px 10px 0px
       rgb(255, 255, 255);
+  width: 50vh;
+  border-radius: 25px;
 }
-#form_controls_register {
+.dropdown-menu {
+  border-radius: 100px;
+  padding: 0 auto;
+}
+.dropdown-item:active {
+  background: rgb(204, 204, 204);
+  color: black;
+}
+#form_controls_register,
+#form_control_forgot_password,
+#form_controls_signin,
+#header_form_control_input {
   box-shadow: 8px 8px 16px
       rgb(248, 248, 248) inset,
     -8px -8px 16px rgb(248, 248, 248)
       inset !important;
 }
-#form_controls_register_submit {
+#form_controls_register_submit,
+#form_controls_signin_submit,
+#forgot_password_button,
+#header_button {
   box-shadow: 2px 2px 5px
       rgb(219, 219, 219),
     -2px -2px 5px rgb(255, 255, 255);
 }
-#form_controls_register:focus {
-  border: 0px lightgray solid;
+#form_controls_register:focus,
+#form_control_forgot_password:focus,
+#form_controls_signin:focus,
+#header_form_control_input:focus {
+  border: 0.2px rgb(150, 21, 41) dashed !important;
 }
-#register_template {
-  display: flex;
-  align-items: center;
+#forgot_password_card {
+  box-shadow: 0.2px 2px 16px
+      rgb(236, 236, 236),
+    -10px -10px 10px 0px
+      rgb(255, 255, 255);
 }
-#image_register_div {
-  margin-left: 15%;
+#header {
+  box-shadow: 0 0.2px 106px 0px
+    rgb(223, 223, 223);
 }
-#image_register {
-  width: 50vh;
-  height: 50vh;
-  margin-left: 15%;
-  border-radius: 50%;
-  box-shadow: 10px 10px 10px
-    rgb(187, 187, 187);
+.dropdown-toggle.nav-link::after {
+  display: none !important;
+}
+#header_form_control {
+  margin-left: 10%;
+  width: 30%;
 }
 @media screen and (max-width: 63em) {
   #register {
-    margin: 6% 6% 6% 6%;
+    margin: 5% 0%;
   }
-  #image_register_div {
-    display: none;
+  #header_form_control {
+    width: 100%;
+    float: left;
+    margin-left: 0%;
   }
 }

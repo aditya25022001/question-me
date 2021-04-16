@@ -5,7 +5,7 @@ import firebase from 'firebase'
 dotenv.config()
 
 const firebaseApp = firebase.initializeApp({
-    apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+    apiKey: "AIzaSyDLmFzuy9udVHjmAnIzFWnWKFtqt7FldGw",
     authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
     projectId: "clone-fb-dd07f",
     storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
