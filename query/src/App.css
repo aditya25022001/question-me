@@ -36,6 +36,7 @@
   box-shadow: 2px 2px 5px
       rgb(219, 219, 219),
     -2px -2px 5px rgb(255, 255, 255);
+  background-color: rgb(247, 247, 247);
 }
 #form_controls_register:focus,
 #form_control_forgot_password:focus,
@@ -49,6 +50,12 @@
     -10px -10px 10px 0px
       rgb(255, 255, 255);
 }
+#form_controls_register_submit:hover,
+#form_controls_signin_submit:hover,
+#forgot_password_button:hover,
+#header_button:hover {
+  background-color: rgb(236, 236, 236);
+}
 #header {
   box-shadow: 0 0.2px 106px 0px
     rgb(223, 223, 223);
@@ -58,7 +65,22 @@
 }
 #header_form_control {
   margin-left: 10%;
-  width: 30%;
+  width: 35%;
+}
+#header_icon:hover {
+  background-color: rgb(218, 218, 218);
+}
+#nav_features {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+#about_para {
+  font-size: 20px;
+}
+#about_headings {
+  font-size: 30px;
 }
 @media screen and (max-width: 63em) {
   #register {
@@ -68,5 +90,15 @@
     width: 100%;
     float: left;
     margin-left: 0%;
+  }
+  #nav_features {
+    display: flex;
+    flex-direction: row;
+  }
+  #about_para {
+    font-size: 15px;
+  }
+  #about_headings {
+    font-size: 25px;
   }
 }

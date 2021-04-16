@@ -152,7 +152,7 @@ export const RegisterScreen = ({history}) => {
                         </Form.Group>
                     </ListGroup.Item>
                     <ListGroup.Item className='mx-auto text-center border-0 mt-0 pt-0 pb-4' style={{ borderBottomRightRadius: 50, borderBottomLeftRadius: 50 }}>
-                        <Button className='py-3' id='form_controls_register_submit' style={{ width: '100%', borderRadius: 150, color: 'black', backgroundColor: 'rgb(247,247,247)', border: 0 }} type='submit'>Sign Up</Button>
+                        <Button className='py-3' id='form_controls_register_submit' style={{ width: '100%', borderRadius: 150, color: 'black', border: 0 }} type='submit'>Sign Up</Button>
                         <div className='mt-3' style={{ fontWeight: 500, fontSize: '1rem' }}>Already a member? 
                             <Link to='/signin' style={{ color:'black' }} className='ml-1'>
                                 Sign In

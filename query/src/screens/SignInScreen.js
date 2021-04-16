@@ -69,6 +69,7 @@ export const SignInScreen = ({history}) => {
                                 style={{ borderRadius: 150 }}
                                 placeholder="Password"
                                 value={password}
+                                type="password"
                                 onChange={e => setPassword(e.target.value)}
                             />
                         </Form.Group>
@@ -79,7 +80,7 @@ export const SignInScreen = ({history}) => {
                         </Link>
                     </ListGroup.Item>
                     <ListGroup.Item className='mx-auto text-center border-0 mt-0 pt-0 pb-4' style={{ borderBottomRightRadius: 50, borderBottomLeftRadius: 50 }}>
-                        <Button className='py-3' id='form_controls_signin_submit' style={{ width: '100%', borderRadius: 150, color: 'black', backgroundColor: 'rgb(247,247,247)', border: 0 }} type='submit'>Sign In</Button>
+                        <Button className='py-3' id='form_controls_signin_submit' style={{ width: '100%', borderRadius: 150, color: 'black', border: 0 }} type='submit'>Sign In</Button>
                         <div className='mt-3' style={{ fontWeight: 500, fontSize: '1rem' }}>New to Query Master? 
                             <Link to='/register' className='ml-1' style={{ color:'black' }} >  
                                 Sign Up

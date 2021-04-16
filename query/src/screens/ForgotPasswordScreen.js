@@ -24,7 +24,7 @@ export const ForgotPasswordScreen = () => {
                     onChange={e =>setEmail(e.target.value)}        
                     style={{ borderRadius: 150}}
                 />
-                <Button id='forgot_password_button' className='my-3 py-3 border-0' style={{ borderRadius:150, width:'100%', backgroundColor:'rgb(247,247,247)', color:'black' }} >Send Email</Button>
+                <Button id='forgot_password_button' className='my-3 py-3 border-0' style={{ borderRadius:150, width:'100%', color:'black' }} >Send Email</Button>
                 <Card.Text>Back to 
                     <Link to='/signin' style={{ color:'black' }} className='ml-2'>
                         Sign In?
