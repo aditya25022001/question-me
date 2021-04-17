@@ -4,15 +4,19 @@ import { SignInScreen } from './screens/SignInScreen'
 import { ForgotPasswordScreen } from './screens/ForgotPasswordScreen'
 import { HomeScreen } from './screens/HomeScreen'
 import { AboutScreen } from './screens/AboutScreen'
+import { ProfileScreen } from './screens/ProfileScreen'
+import { ProfileEditScreen } from './screens/ProfileEditScreen'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { auth } from './firebase';
-import { login, logout } from './features/userSlice';
-import { useDispatch } from 'react-redux';
+import { login, logout, selectUser } from './features/userSlice';
+import { useDispatch, useSelector } from 'react-redux';
 import './App.css';
 
 function App() {
 
   const dispatch = useDispatch()
+
+  const user = useSelector(selectUser)
 
   useEffect(()=>{
     auth.onAuthStateChanged((userAuth) => {
@@ -21,8 +25,6 @@ function App() {
           email:userAuth.email,
           uid:userAuth.uid,
           displayName:userAuth.displayName,
-          photoUrl:userAuth.profileURL,
-          userDescription:userAuth.userDescription
         }))
       }
       else{
@@ -32,15 +34,17 @@ function App() {
   },[dispatch])
 
   return (
-    <Router>
       <main className="App">
-        <Route path='/register' component={RegisterScreen} exact/>
-        <Route path='/signin' component={SignInScreen} exact/>
-        <Route path='/resetpassword' component={ForgotPasswordScreen} exact/>
-        <Route path='/about' component={AboutScreen} exact/>
-        <Route path='/' component={HomeScreen} exact/>
+        <Router>
+            <Route path='/register' component={RegisterScreen} exact/>
+            <Route path='/signin' component={SignInScreen} exact/>
+            <Route path='/resetpassword' component={ForgotPasswordScreen} exact/>
+            <Route path='/about' component={AboutScreen} exact/>
+            <Route path='/profile' component={ProfileScreen} exact/>
+            <Route path='/profile/edit' component={ProfileEditScreen} exact/>
+            <Route path='/' component={HomeScreen} exact/>
+        </Router>
       </main>
-    </Router>
   );
 }
 

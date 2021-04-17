@@ -3,18 +3,19 @@
   font-family: monospace;
 }
 #register,
-#signin {
+#signin,
+#forgot_password_card,
+#edit {
   margin: 2% 2% 2% 2%;
   box-shadow: 0.2px 2px 16px
       rgb(236, 236, 236),
     -10px -10px 10px 0px
       rgb(255, 255, 255);
-  width: 50vh;
+  width: 45vh;
   border-radius: 25px;
 }
 .dropdown-menu {
-  border-radius: 100px;
-  padding: 0 auto;
+  width: 100%;
 }
 .dropdown-item:active {
   background: rgb(204, 204, 204);
@@ -23,7 +24,8 @@
 #form_controls_register,
 #form_control_forgot_password,
 #form_controls_signin,
-#header_form_control_input {
+#header_form_control_input,
+#edit_form_controls {
   box-shadow: 8px 8px 16px
       rgb(248, 248, 248) inset,
     -8px -8px 16px rgb(248, 248, 248)
@@ -32,7 +34,8 @@
 #form_controls_register_submit,
 #form_controls_signin_submit,
 #forgot_password_button,
-#header_button {
+#header_button,
+#edit_submit {
   box-shadow: 2px 2px 5px
       rgb(219, 219, 219),
     -2px -2px 5px rgb(255, 255, 255);
@@ -43,12 +46,6 @@
 #form_controls_signin:focus,
 #header_form_control_input:focus {
   border: 0.2px rgb(150, 21, 41) dashed !important;
-}
-#forgot_password_card {
-  box-shadow: 0.2px 2px 16px
-      rgb(236, 236, 236),
-    -10px -10px 10px 0px
-      rgb(255, 255, 255);
 }
 #form_controls_register_submit:hover,
 #form_controls_signin_submit:hover,
@@ -82,9 +79,27 @@
 #about_headings {
   font-size: 30px;
 }
+*::-webkit-scrollbar {
+  background-color: #fff;
+  width: 5px;
+}
+*::-webkit-scrollbar-thumb {
+  background-color: rgb(150, 21, 41);
+}
+#profile_card {
+  width: 28%;
+  margin-top: 2%;
+}
+#edit_profile {
+  margin-right: 5%;
+}
 @media screen and (max-width: 63em) {
-  #register {
+  #register,
+  #signin,
+  #forgot_password_card,
+  #edit {
     margin: 5% 0%;
+    width: 95%;
   }
   #header_form_control {
     width: 100%;
@@ -100,5 +115,12 @@
   }
   #about_headings {
     font-size: 25px;
+  }
+  #profile_card {
+    width: 95%;
+    margin-top: 7%;
+  }
+  #edit_profile {
+    margin-right: 1%;
   }
 }

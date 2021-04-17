@@ -5,8 +5,9 @@ import Snackbar from '@material-ui/core/Snackbar';
 import Alert from '@material-ui/lab/Alert';
 import { db, auth } from '../firebase'
 import { login } from '../features/userSlice'
-import '../App.css'
 import { Link } from 'react-router-dom';
+import { Footer } from '../components/Footer'
+import '../App.css'
 
 export const RegisterScreen = ({history}) => {
 
@@ -67,6 +68,7 @@ export const RegisterScreen = ({history}) => {
     }
 
     return (
+        <>
             <ListGroup id='register' className='mx-auto'>
                 <Form onSubmit={submitHandler}>
                     <ListGroup.Item style={{ fontWeight: 'bold', color:'rgb(150,21,41)', borderTopRightRadius: 150, borderTopLeftRadius: 150 }} className='border-0 h3 mb-0 pb-0 mx-auto text-center'>
@@ -154,7 +156,7 @@ export const RegisterScreen = ({history}) => {
                     <ListGroup.Item className='mx-auto text-center border-0 mt-0 pt-0 pb-4' style={{ borderBottomRightRadius: 50, borderBottomLeftRadius: 50 }}>
                         <Button className='py-3' id='form_controls_register_submit' style={{ width: '100%', borderRadius: 150, color: 'black', border: 0 }} type='submit'>Sign Up</Button>
                         <div className='mt-3' style={{ fontWeight: 500, fontSize: '1rem' }}>Already a member? 
-                            <Link to='/signin' style={{ color:'black' }} className='ml-1'>
+                            <Link to='/signin' style={{ color:'black', textDecoration: 'underline' }} className='ml-1'>
                                 Sign In
                             </Link>
                         </div>
@@ -164,5 +166,7 @@ export const RegisterScreen = ({history}) => {
                     <Alert variant='filled' severity="error">{message}</Alert>
                 </Snackbar>
             </ListGroup>
+            <Footer/>
+            </>
     )
 }

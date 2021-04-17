@@ -6,8 +6,10 @@ import CreateIcon from '@material-ui/icons/Create';
 import InfoIcon from '@material-ui/icons/Info';
 import AssignmentIndIcon from '@material-ui/icons/AssignmentInd';
 import PowerSettingsNewIcon from '@material-ui/icons/PowerSettingsNew';
+import HomeRoundedIcon from '@material-ui/icons/HomeRounded';
 import { useDispatch, useSelector } from 'react-redux';
 import { logout, selectUser } from '../features/userSlice';
+import { Link } from 'react-router-dom'
 
 export const Header = () => {
     
@@ -41,46 +43,63 @@ export const Header = () => {
         </div>
         <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className='ml-auto'>
-                {user&&<Nav.Link className='mr-4' href="/ask" >
-                    <div id='nav_features' >
-                        <CreateIcon id='header_icon' style={{ color:'rgb(150,21,41)', fontSize:29.5,padding:'1%', borderRadius:'50%' }} />
-                        <div>
-                            Ask Question
+                <Nav.Link className='mr-5'>
+                    <Link to='/' style={{ textDecoration:'none', color:'gray' }}>
+                        <div id='nav_features' >
+                            <HomeRoundedIcon id='header_icon' style={{ color:'rgb(150,21,41)', fontSize:29,padding:'1%', borderRadius:'50%' }} />
+                            <div>
+                                Home
+                            </div>
                         </div>
-                    </div>
-                </Nav.Link>}
+                    </Link>
+                </Nav.Link>
                 <NavDropdown 
-                    style={{ borderradius:100 }}
                     className='mr-5'
                     title={
                     <div id='nav_features'>
                         <PersonIcon id='header_icon' style={{ color:'rgb(150,21,41)', fontSize:29,padding:'1%', borderRadius:'50%' }} />
-                        <div>More</div>
+                        <div style={{ color:'gray' }}>More</div>
                     </div>
                     } 
                     id="collasible-nav-dropdown"
                 >
-                    {user&&<NavDropdown.Item style={{ borderTopRightRadius:100, borderTopLeftRadius:100 }} href="/profile">
+                    {user&&<NavDropdown.Item>
+                        <Link to='/profile' style={{ textDecoration:'none', color:'black' }}>
                             <div className='d-flex'>
                                 <AssignmentIndIcon/>
                                 <div>Profile</div>
                             </div>
-                            </NavDropdown.Item>}
-                    {!user&&<NavDropdown.Item style={{ borderTopRightRadius:100, borderTopLeftRadius:100 }} href="/signin">Sign In</NavDropdown.Item>}
-                    <NavDropdown.Item style={{ borderBottomRightRadius:100, borderBottomLeftRadius:100 }} onClick={e=>logoutHandler()}>
+                        </Link>
+                    </NavDropdown.Item>}
+                    {!user&&<NavDropdown.Item>
+                        <Link to='/signin' style={{ color:'black', textDecoration: 'none' }}>
+                            Sign In
+                        </Link>
+                    </NavDropdown.Item>}
+                    {user&&<NavDropdown.Item className='mr-3'>
+                        <Link to='/ask' style={{ color:'black', textDecoration: 'none' }}>
+                            <div className='d-flex'>
+                                <CreateIcon/>
+                                <div>Ask Question</div>
+                            </div>
+                        </Link>
+                    </NavDropdown.Item>}
+                    {user&&<NavDropdown.Item onClick={e=>logoutHandler()}>
                         <div className='d-flex'>
                             <PowerSettingsNewIcon/>
                             <div>Log out</div>
                         </div>
-                    </NavDropdown.Item>
+                    </NavDropdown.Item>}
                 </NavDropdown>
-                <Nav.Link className='mr-3' href="/about">
-                    <div id='nav_features' >
-                        <InfoIcon id='header_icon' style={{ color:'rgb(150,21,41)', fontSize:29,padding:'1%', borderRadius:'50%' }} />
-                        <div>
-                            About
+                <Nav.Link className='mr-3'>
+                    <Link to='/about' style={{ color:'gray', textDecoration: 'none' }}>
+                        <div id='nav_features' >
+                            <InfoIcon id='header_icon' style={{ color:'rgb(150,21,41)', fontSize:29,padding:'1%', borderRadius:'50%' }} />
+                            <div>
+                                About
+                            </div>
                         </div>
-                    </div>
+                    </Link>
                 </Nav.Link>
             </Nav>
         </Navbar.Collapse>

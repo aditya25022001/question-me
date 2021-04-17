@@ -1,5 +1,6 @@
 import React from 'react'
 import { Header } from '../components/Header'
+import { Footer } from '../components/Footer'
 import '../App.css'
 
 export const AboutScreen = () => {
@@ -36,6 +37,7 @@ export const AboutScreen = () => {
                     <p>CHEERS!</p>
                 </p>
             </div>
+            <Footer/>
         </div>
     )
 }
