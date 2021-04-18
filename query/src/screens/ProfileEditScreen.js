@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { selectUser } from '../features/userSlice'
-import {  Button, Container, Form, Image, ListGroup} from 'react-bootstrap'
+import {  Button, Form, ListGroup} from 'react-bootstrap'
 import { Header } from '../components/Header'
 import { Footer } from '../components/Footer'
+import { NewsScreen } from '../components/Footer'
 import { db } from '../firebase'
 import '../App.css'
 
@@ -18,22 +19,29 @@ export const ProfileEditScreen = ({history}) => {
     const [profile, setProfile] = useState('')
     
     const [currentUser, setCurrentUser] = useState({})
+    const [currentUserId, setCurrentUserId] = useState('')
     
-    const dispatch = useDispatch()
-
     useEffect(()=>{
         if(user){
             db.collection('queryUsers').where("id","==",user.uid).get().then((docs) => {
                 docs.forEach((doc) => {
+                    setCurrentUserId(doc.id);
                     setCurrentUser(doc.data())
                 })
             })
         }
-    },[user,dispatch,history])
+    },[user,history])
 
     const submitHandler = (e) => {
         e.preventDefault()
-        console.log({name,handle,description,profile,subjects});
+        db.collection('queryUsers').doc(currentUserId).set({
+            userName:name!=='' ? name : currentUser.userName,
+            userHandle:handle!=='' ? handle : currentUser.userHandle,
+            userDescription:description!=='' ? description : currentUser.userDescription,
+            subjects:[...currentUser.subjects,...subjects],
+            photo:profile.slice(0,4)==='http' ? profile : currentUser.photo
+        },{merge:true})
+        history.push('/profile')
     }
 
     return(

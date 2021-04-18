@@ -93,6 +93,10 @@
 #edit_profile {
   margin-right: 5%;
 }
+#news {
+  width: 50vh;
+  border-radius: 25px;
+}
 @media screen and (max-width: 63em) {
   #register,
   #signin,
@@ -122,5 +126,8 @@
   }
   #edit_profile {
     margin-right: 1%;
+  }
+  #news {
+    display: none;
   }
 }

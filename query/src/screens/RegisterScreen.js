@@ -20,11 +20,13 @@ export const RegisterScreen = ({history}) => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [profile, setProfile] = useState('')
+    const [country, setCountry] = useState('')
+    const [subjects, setSubjects] = useState([])
     const [description, setDescription] = useState('')
 
     const submitHandler = (e) => {
         e.preventDefault()
-        if(name==='' || userHandle==='' || email ==='' || password===''){
+        if(name==='' || userHandle==='' || email ==='' || password==='' || subjects===''){
             setDisplay(true)
             setMessage("Name, Email, Userhandle, Password are necessary")
         }
@@ -42,6 +44,8 @@ export const RegisterScreen = ({history}) => {
                     userEmail:userAuth.user.email,
                     userDescription:description,
                     photo:profile,
+                    country:country,
+                    subjects:subjects.split(','),
                     id:userAuth.user.uid
                 })
                 .then(()=>{
@@ -132,9 +136,35 @@ export const RegisterScreen = ({history}) => {
                                 id='form_controls_register'
                                 style={{ borderRadius: 150 }}
                                 type='text'
+                                placeholder="Subjects Interested ( comma separated ) "
+                                value={subjects}
+                                onChange={e => setSubjects(e.target.value)}
+                            />
+                        </Form.Group>
+                    </ListGroup.Item>
+                    <ListGroup.Item className='border-0 mx-auto py-1 my-0'>
+                        <Form.Group>
+                            <Form.Control
+                                className='py-4 border-0'
+                                id='form_controls_register'
+                                style={{ borderRadius: 150 }}
+                                type='text'
                                 placeholder="Online photograph link"
                                 value={profile}
                                 onChange={e => setProfile(e.target.value)}
+                            />
+                        </Form.Group>
+                    </ListGroup.Item>
+                    <ListGroup.Item className='border-0 mx-auto py-1 my-0'>
+                        <Form.Group>
+                            <Form.Control
+                                className='py-4 border-0'
+                                id='form_controls_register'
+                                style={{ borderRadius: 150 }}
+                                type='text'
+                                placeholder="Country"
+                                value={country}
+                                onChange={e => setCountry(e.target.value)}
                             />
                         </Form.Group>
                     </ListGroup.Item>
