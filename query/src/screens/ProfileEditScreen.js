@@ -4,7 +4,6 @@ import { selectUser } from '../features/userSlice'
 import {  Button, Form, ListGroup} from 'react-bootstrap'
 import { Header } from '../components/Header'
 import { Footer } from '../components/Footer'
-import { NewsScreen } from '../components/Footer'
 import { db } from '../firebase'
 import '../App.css'
 
@@ -70,7 +69,7 @@ export const ProfileEditScreen = ({history}) => {
                     <ListGroup.Item className='mx-auto border-0 my-0 py-1'>
                         <Form.Group>
                             <Form.Label>Subjects</Form.Label>
-                            <Form.Control id='edit_form_controls' className='border-0' style={{ borderRadius:10 }} type='text' as='textarea' rows={3} placeholder='Enter comma separated values' placeholder={currentUser.subjects} onChange={e => setSubjects([...e.target.value.split(',')])}></Form.Control>
+                            <Form.Control id='edit_form_controls' className='border-0' style={{ borderRadius:10 }} type='text' as='textarea' rows={3} placeholder={currentUser.subjects} onChange={e => setSubjects([...e.target.value.split(',')])}></Form.Control>
                         </Form.Group>
                     </ListGroup.Item>
                     <ListGroup.Item className='mx-auto border-0 my-0 py-1'>

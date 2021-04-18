@@ -46,7 +46,8 @@ export const RegisterScreen = ({history}) => {
                     photo:profile,
                     country:country,
                     subjects:subjects.split(','),
-                    id:userAuth.user.uid
+                    id:userAuth.user.uid,
+                    questions:[]
                 })
                 .then(()=>{
                     dispatch(login({

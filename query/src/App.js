@@ -6,6 +6,7 @@ import { HomeScreen } from './screens/HomeScreen'
 import { AboutScreen } from './screens/AboutScreen'
 import { ProfileScreen } from './screens/ProfileScreen'
 import { ProfileEditScreen } from './screens/ProfileEditScreen'
+import { AskQuestionScreen } from './screens/AskQuestionScreen'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { auth } from './firebase';
 import { login, logout, selectUser } from './features/userSlice';
@@ -15,8 +16,6 @@ import './App.css';
 function App() {
 
   const dispatch = useDispatch()
-
-  const user = useSelector(selectUser)
 
   useEffect(()=>{
     auth.onAuthStateChanged((userAuth) => {
@@ -42,6 +41,7 @@ function App() {
             <Route path='/about' component={AboutScreen} exact/>
             <Route path='/profile' component={ProfileScreen} exact/>
             <Route path='/profile/edit' component={ProfileEditScreen} exact/>
+            <Route path='/ask' component={AskQuestionScreen} exact/>
             <Route path='/' component={HomeScreen} exact/>
         </Router>
       </main>

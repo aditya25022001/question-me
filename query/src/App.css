@@ -5,7 +5,8 @@
 #register,
 #signin,
 #forgot_password_card,
-#edit {
+#edit,
+#ask {
   margin: 2% 2% 2% 2%;
   box-shadow: 0.2px 2px 16px
       rgb(236, 236, 236),
@@ -13,6 +14,9 @@
       rgb(255, 255, 255);
   width: 45vh;
   border-radius: 25px;
+}
+#ask {
+  width: 80vh;
 }
 .dropdown-menu {
   width: 100%;
@@ -25,7 +29,8 @@
 #form_control_forgot_password,
 #form_controls_signin,
 #header_form_control_input,
-#edit_form_controls {
+#edit_form_controls,
+#ask_form_controls {
   box-shadow: 8px 8px 16px
       rgb(248, 248, 248) inset,
     -8px -8px 16px rgb(248, 248, 248)
@@ -101,7 +106,8 @@
   #register,
   #signin,
   #forgot_password_card,
-  #edit {
+  #edit,
+  #ask {
     margin: 5% 0%;
     width: 95%;
   }
@@ -129,5 +135,13 @@
   }
   #news {
     display: none;
+  }
+}
+@media screen and (max-width: 1024px) {
+  #ask {
+    width: 95%;
+  }
+  #news {
+    width: 30%;
   }
 }
