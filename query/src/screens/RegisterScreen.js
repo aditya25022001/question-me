@@ -1,20 +1,17 @@
 import React, { useState } from 'react'
-import { useDispatch } from 'react-redux'
 import { Button, Form, ListGroup } from 'react-bootstrap'
 import Snackbar from '@material-ui/core/Snackbar';
 import Alert from '@material-ui/lab/Alert';
 import { db, auth } from '../firebase'
-import { login } from '../features/userSlice'
 import { Link } from 'react-router-dom';
 import { Footer } from '../components/Footer'
 import '../App.css'
 
 export const RegisterScreen = ({history}) => {
-
-    const dispatch = useDispatch()
     
     const [message,setMessage] = useState('')
     const [display,setDisplay] = useState(false)
+    const [displayCreated,setDisplayCreated] = useState(false)
     const [name, setName] = useState('')
     const [userHandle, setUserHandle] = useState('')
     const [email, setEmail] = useState('')
@@ -50,14 +47,10 @@ export const RegisterScreen = ({history}) => {
                     questions:[]
                 })
                 .then(()=>{
-                    dispatch(login({
-                        email:userAuth.user.email,
-                        uid:userAuth.user.uid,
-                        displayName:name,
-                        photoUrl:profile,
-                        userHandle:userHandle
-                    }))
-                    history.push('/')
+                    auth.currentUser.sendEmailVerification()
+                    .then(()=>{
+                        setDisplayCreated(true)
+                    })
                 })
             })
             .catch(error => {
@@ -70,6 +63,11 @@ export const RegisterScreen = ({history}) => {
 
     const closeSnackbar = () => {
         setDisplay(false)
+    }
+
+    const closeSnackbarCreated = () => {
+        setDisplayCreated(false)
+        history.push('/signin')
     }
 
     return (
@@ -195,6 +193,9 @@ export const RegisterScreen = ({history}) => {
                 </Form>
                 <Snackbar open={display} autoHideDuration={4000} onClose={closeSnackbar}>
                     <Alert variant='filled' severity="error">{message}</Alert>
+                </Snackbar>
+                <Snackbar open={displayCreated} autoHideDuration={4000} onClose={closeSnackbarCreated}>
+                    <Alert variant='filled' severity="success">Verify your account in your email</Alert>
                 </Snackbar>
             </ListGroup>
             <Footer/>

@@ -4,8 +4,10 @@ import { selectUser } from '../features/userSlice'
 import {  Button, Form, ListGroup} from 'react-bootstrap'
 import { Header } from '../components/Header'
 import { Footer } from '../components/Footer'
-import { db } from '../firebase'
+import { auth, db } from '../firebase'
 import '../App.css'
+import { Snackbar } from '@material-ui/core'
+import Alert from '@material-ui/lab/Alert'
 
 export const ProfileEditScreen = ({history}) => {
     
@@ -19,6 +21,9 @@ export const ProfileEditScreen = ({history}) => {
     
     const [currentUser, setCurrentUser] = useState({})
     const [currentUserId, setCurrentUserId] = useState('')
+
+    const [display, setDisplay] = useState(false)
+    const [displayAdded, setDisplayAdded] = useState(false)
     
     useEffect(()=>{
         if(user){
@@ -40,6 +45,29 @@ export const ProfileEditScreen = ({history}) => {
             subjects:[...currentUser.subjects,...subjects],
             photo:profile.slice(0,4)==='http' ? profile : currentUser.photo
         },{merge:true})
+        auth.currentUser.updateProfile({
+            displayName:name!=='' ? name : currentUser.userName,
+            photoURL:profile.slice(0,4)==='http' ? profile : currentUser.photo
+        })
+        .then(()=>{
+            setDisplayAdded(true)
+        })
+        .catch(err=>{
+            setDisplay(true)
+        })
+    }
+
+    if(!user){
+        history.push('/')
+    }
+
+    const closeSnackbar = () => {
+        setDisplay(false)
+        history.push('/profile')
+    }
+
+    const closeSnackbarAdded = () => {
+        setDisplayAdded(false)
         history.push('/profile')
     }
 
@@ -82,6 +110,12 @@ export const ProfileEditScreen = ({history}) => {
                         <Button type='submit' id='edit_submit' className='border-0' style={{color:'black', width:'100%', borderRadius:150 }}>Update</Button>
                     </ListGroup.Item>
                 </Form>
+                <Snackbar open={display} autoHideDuration={2000} onClose={closeSnackbar}>
+                    <Alert variant='filled' severity="error">Error updating profile</Alert>
+                </Snackbar>
+                <Snackbar open={displayAdded} autoHideDuration={2000} onClose={closeSnackbarAdded}>
+                    <Alert variant='filled' severity="success">Profile edited successfully</Alert>
+                </Snackbar>
             </ListGroup>
             <Footer/>
         </div>

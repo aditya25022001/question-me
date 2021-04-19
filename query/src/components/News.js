@@ -1,48 +1,42 @@
 import React, { useEffect, useState } from 'react'
-import axios from 'axios'
 import { ListGroup } from 'react-bootstrap'
-import { selectUser } from '../features/userSlice'
-import { useSelector } from 'react-redux'
-import { db } from '../firebase'
+import { v4 } from 'uuid' 
+import axios from 'axios'
 
 export const News = () => {
-    
-    const user = useSelector(selectUser)
-
-    const [currentUser,setCurrentUser] = useState({})
 
     const [news,setNews] = useState([])
 
-    const data = async () => {        
-        const data1 = await axios.get(`http://api.mediastack.com/v1/news?access_key=353652bf291628856b51a67b23a1d27b&countries=us&limit=10&languages=en`)
+    const api_key=process.env.REACT_APP_NEWS_API
+
+    const data = async () => {
+        const data1 = await axios.get(`https://api.currentsapi.services/v1/latest-news?apiKey=${api_key}`)
         setNews(data1)
     }
 
     useEffect(()=>{
-        if(user){
-            db.collection('queryUsers').where('id','==',user.uid).get().then((docs) => {
-                docs.forEach((doc)=>{
-                    setCurrentUser(doc.data())
-                })
-            })
-            // data()
-        }
-    },[user])
+        // data()
+    },[])
     
-    console.log(currentUser);
-    console.log(news);
     const list = [...Array(10)]
-    console.log(list)
 
     return (
-        <ListGroup id='news' className='mt-2 py-5'>
-            {Object.keys(news).length!==0 ? news.data.data.map(d=>(
-                <ListGroup.Item>
-                    <a href={d.url} target="_blank" style={{ textDecoration: 'underline', color:'black'}}>{d.title}</a>
+        <ListGroup id='news' className='mt-0 py-3'>
+            <ListGroup.Item style={{ borderRadius:50 }} className='pb-0 mb-0 text-center h3 border-0'>
+                Latest News
+            </ListGroup.Item>
+            {Object.keys(news).length!==0 && news.data.news ? news.data.news.slice(0,11).map(d=>(
+                <ListGroup.Item id='news_element' style={{ borderRadius:10 }} key={d.id} className='my-2 border-0'>
+                    <a
+                        rel='noreferrer noopener'
+                        href={d.url} 
+                        target="_blank" 
+                        style={{ textDecoration: 'underline', color:'black'}}
+                    >{d.title}</a>
                 </ListGroup.Item>
             ))
             :<>{list.map(l=>(
-                <ListGroup.Item>
+                <ListGroup.Item key={v4()} id='news_element' style={{ borderRadius:10 }} className='my-2 border-0'>
                     <a href='/' style={{ textDecoration: 'underline', color:'black'}}>In publishing and graphic design, Lorem ipsum is a placeholder.</a>
                 </ListGroup.Item>
             ))

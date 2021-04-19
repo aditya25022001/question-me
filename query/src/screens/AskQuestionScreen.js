@@ -10,7 +10,7 @@ import { db } from '../firebase'
 import firebase from 'firebase'
 
 export const AskQuestionScreen = ({history}) => {
-    
+
     const user = useSelector(selectUser)
 
     const [display, setDisplay] = useState(false)
@@ -45,7 +45,8 @@ export const AskQuestionScreen = ({history}) => {
             setDisplay(false)
             const uniqueID = user.uid+Date.now()
             db.collection('questions').add({
-                byUser:user.uid,
+                byUserId:user.uid,
+                byUserName:currentUser.userName,
                 questionsID:uniqueID,
                 questionTitle:title,
                 questionDescription:question,

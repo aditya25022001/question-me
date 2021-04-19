@@ -10,6 +10,7 @@ import HomeRoundedIcon from '@material-ui/icons/HomeRounded';
 import { useDispatch, useSelector } from 'react-redux';
 import { logout, selectUser } from '../features/userSlice';
 import { Link } from 'react-router-dom'
+import { auth } from '../firebase';
 
 export const Header = () => {
     
@@ -19,11 +20,16 @@ export const Header = () => {
 
     const logoutHandler = () => {
         dispatch(logout())
+        auth.signOut()
     }
 
     return (
         <Navbar id='header' sticky='top' className='rounded' collapseOnSelect expand="lg" bg="white" variant="light">
-        <Navbar.Brand href="/" className='ml-3' style={{ color:'rgb(150,21,41)', fontWeight:600, fontSize:30 }}>Query Master</Navbar.Brand>
+        <Navbar.Brand className='ml-3' style={{ color:'rgb(150,21,41)', fontWeight:600, fontSize:30 }}>
+            <Link to='/' style={{ textDecoration:'none', color:'rgb(150,21,41)'}}>
+                Query Master
+            </Link>
+        </Navbar.Brand>
         <Navbar.Toggle className="border-0" aria-controls="responsive-navbar-nav">
             <span>
                 <MenuOpenIcon style={{ fontSize:25 }}/>
@@ -43,15 +49,13 @@ export const Header = () => {
         </div>
         <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className='ml-auto'>
-                <Nav.Link className='mr-5'>
-                    <Link to='/' style={{ textDecoration:'none', color:'gray' }}>
-                        <div id='nav_features' >
-                            <HomeRoundedIcon id='header_icon' style={{ color:'rgb(150,21,41)', fontSize:29,padding:'1%', borderRadius:'50%' }} />
-                            <div>
-                                Home
-                            </div>
+                <Nav.Link href='/' className='mr-5'>
+                    <div id='nav_features' >
+                        <HomeRoundedIcon id='header_icon' style={{ color:'rgb(150,21,41)', fontSize:29,padding:'1%', borderRadius:'50%' }} />
+                        <div>
+                            Home
                         </div>
-                    </Link>
+                    </div>
                 </Nav.Link>
                 <NavDropdown 
                     className='mr-5'
@@ -91,15 +95,13 @@ export const Header = () => {
                         </div>
                     </NavDropdown.Item>}
                 </NavDropdown>
-                <Nav.Link className='mr-3'>
-                    <Link to='/about' style={{ color:'gray', textDecoration: 'none' }}>
-                        <div id='nav_features' >
-                            <InfoIcon id='header_icon' style={{ color:'rgb(150,21,41)', fontSize:29,padding:'1%', borderRadius:'50%' }} />
-                            <div>
-                                About
-                            </div>
+                <Nav.Link href='/about' className='mr-3'>
+                    <div id='nav_features' >
+                        <InfoIcon id='header_icon' style={{ color:'rgb(150,21,41)', fontSize:29,padding:'1%', borderRadius:'50%' }} />
+                        <div>
+                            About
                         </div>
-                    </Link>
+                    </div>
                 </Nav.Link>
             </Nav>
         </Navbar.Collapse>

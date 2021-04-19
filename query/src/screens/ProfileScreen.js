@@ -15,6 +15,10 @@ import Alert from '@material-ui/lab/Alert'
 export const ProfileScreen = ({history}) => {
     
     const user = useSelector(selectUser)
+
+    if(!user){
+        history.push('/')
+    }
     
     const [currentUser, setCurrentUser] = useState({})
     const [currentUserId, setCurrentUserId] = useState()
@@ -61,7 +65,7 @@ export const ProfileScreen = ({history}) => {
             <Header/>
             <Container className='mx-auto' id='profile_card'>
                 <Row className='border-bottom pb-3 align-items-center'>
-                    <Image className='mr-2' src={currentUser.photo} thumbnail/>
+                    <Image className='mr-2 mb-2' src={currentUser.photo} thumbnail/>
                     <div>
                         <div className='mx-auto mt-0' ><span style={{ textDecoration: 'underline'}}>Name</span> : {currentUser.userName}</div>
                         <div className='mt-0'><span style={{ textDecoration: 'underline'}}>User Handle</span> : @{currentUser.userHandle}</div>
@@ -75,7 +79,7 @@ export const ProfileScreen = ({history}) => {
                 <Row className="border-bottom py-3">
                     <div>
                         <div className='mt-0'><span style={{ textDecoration: 'underline'}}>Answers</span> : {currentUser.answers ? currentUser.answers : 'Not answered'}</div>
-                        <div className='mt-0'><span style={{ textDecoration: 'underline'}}>Questions</span> : {currentUser.questions && currentUser.questions.length!==0 ? currentUser.questions : 'Not asked'}</div>
+                        <div className='mt-0'><span style={{ textDecoration: 'underline'}}>Questions</span> : {currentUser.questions && currentUser.questions.length!==0 ? currentUser.questions.length : 'Not asked'}</div>
                         <div className='mt-0'><span style={{ textDecoration: 'underline'}}>Subjects</span> :
                             {currentUser.subjects && currentUser.subjects.length!==0 
                             ? currentUser.subjects.map(subject => (

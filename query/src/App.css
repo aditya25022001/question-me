@@ -40,7 +40,8 @@
 #form_controls_signin_submit,
 #forgot_password_button,
 #header_button,
-#edit_submit {
+#edit_submit,
+#news_element {
   box-shadow: 2px 2px 5px
       rgb(219, 219, 219),
     -2px -2px 5px rgb(255, 255, 255);
@@ -102,6 +103,10 @@
   width: 50vh;
   border-radius: 25px;
 }
+#profile_image {
+  width: 50%;
+  margin-bottom: 3%;
+}
 @media screen and (max-width: 63em) {
   #register,
   #signin,
@@ -143,5 +148,9 @@
   }
   #news {
     width: 30%;
+  }
+  #profile_image {
+    width: 100%;
+    margin-bottom: 3%;
   }
 }

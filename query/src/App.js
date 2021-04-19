@@ -9,8 +9,8 @@ import { ProfileEditScreen } from './screens/ProfileEditScreen'
 import { AskQuestionScreen } from './screens/AskQuestionScreen'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { auth } from './firebase';
-import { login, logout, selectUser } from './features/userSlice';
-import { useDispatch, useSelector } from 'react-redux';
+import { login, logout } from './features/userSlice';
+import { useDispatch } from 'react-redux';
 import './App.css';
 
 function App() {

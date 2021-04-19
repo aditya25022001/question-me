@@ -28,12 +28,22 @@ export const AboutScreen = () => {
                 <div id='about_headings' style={{ fontWeight:700, marginTop:'6vh' }}>Developer Side</div>
                 <p id='about_para'>
                     The technology stack used in this project is very powerful ReactJS, Material UI, React Bootstrap, Firebase, Firebase Authentication and Firebase Firestore.
-                    The source code to the project can be found out on my <a href='https://github.com/aditya25022001/question-me' target='_blank' style={{ textDecoration:'underline', color:'black' }}>GitHub</a> account repository.
+                    The source code to the project can be found out on my <a 
+                        href='https://github.com/aditya25022001/question-me' 
+                        target='_blank' 
+                        style={{ textDecoration:'underline', color:'black' }}
+                        rel='noreferrer noopener'
+                    >GitHub</a> account repository.
                     Any feature or bug you think can be added or is there respectively are open to discuss.
                 </p>
                 <div id='about_headings' style={{ fontWeight:700, marginTop:'6vh' }}>Developer</div>
                 <p id='about_para'>
-                    Hi, I am Aditya, check out my <a href='https://adityaudayubale.web.app' target='_blank' style={{ textDecoration:'underline', color:'black' }}>portfolio</a> if found it useful and good enough and want to work with or work on a project.
+                    Hi, I am Aditya, check out my <a 
+                        href='https://adityaudayubale.web.app' 
+                        target='_blank' 
+                        style={{ textDecoration:'underline', color:'black' }}
+                        rel='noreferrer noopener'
+                    >portfolio</a> if found it useful and good enough and want to work with or work on a project.
                     <p>CHEERS!</p>
                 </p>
             </div>
