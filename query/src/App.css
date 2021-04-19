@@ -41,11 +41,15 @@
 #forgot_password_button,
 #header_button,
 #edit_submit,
-#news_element {
+#news_element,
+#question_element {
   box-shadow: 2px 2px 5px
       rgb(219, 219, 219),
     -2px -2px 5px rgb(255, 255, 255);
   background-color: rgb(247, 247, 247);
+}
+#question_element {
+  padding: 3%;
 }
 #form_controls_register:focus,
 #form_control_forgot_password:focus,
@@ -72,6 +76,10 @@
 }
 #header_icon:hover {
   background-color: rgb(218, 218, 218);
+}
+#question_div {
+  width: 100%;
+  flex: 1;
 }
 #nav_features {
   display: flex;
@@ -107,6 +115,19 @@
   width: 50%;
   margin-bottom: 3%;
 }
+#questions {
+  width: 100%;
+}
+#news_div {
+  margin-right: 5%;
+}
+#homescreen {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+  padding: 1% 10%;
+}
 @media screen and (max-width: 63em) {
   #register,
   #signin,
@@ -141,16 +162,53 @@
   #news {
     display: none;
   }
+  #questions {
+    width: 100%;
+  }
+  #homescreen {
+    padding: 1% 3%;
+  }
+  #question_div {
+    width: 90%;
+  }
+  #questions {
+    width: 100%;
+  }
+  #news_div {
+    display: none;
+  }
+  #question_element {
+    padding: 4%;
+  }
 }
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 1025px) {
   #ask {
     width: 95%;
   }
   #news {
-    width: 30%;
+    width: 100%;
+  }
+  #question_element {
+    padding: 3%;
+  }
+  #question_div {
+    width: 100%;
+  }
+  #news_div {
+    margin-right: 5%;
+    padding-right: 0;
+    width: 50%;
+  }
+  #questions {
+    width: 100%;
   }
   #profile_image {
     width: 100%;
     margin-bottom: 3%;
+  }
+}
+@media screen and (max-width: 600px) {
+  #question_element {
+    padding: 5%;
   }
 }

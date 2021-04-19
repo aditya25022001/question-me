@@ -1,16 +1,24 @@
 import { Header } from '../components/Header'
 import { News } from '../components/News'
+import { Question } from '../components/Question'
+import { Footer } from '../components/Footer'
 import React from 'react'
-import { Container } from '@material-ui/core'
+import '../App.css'
 
 export const HomeScreen = () => {
    
     return (
         <div>
             <Header/>
-            <Container>
-                <News/>
-            </Container>
+            <div id='homescreen'>
+                <div id='news_div'>
+                    <News/>
+                </div>
+                <div id='question_div'>
+                    <Question/>
+                </div>
+            </div>
+            <Footer/>
         </div>
     )
 }
