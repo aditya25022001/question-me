@@ -23,7 +23,7 @@ export const News = () => {
     return (
         <ListGroup id='news' className='mt-0 py-3'>
             <ListGroup.Item style={{ borderRadius:50 }} className='pb-0 mb-0 text-center h3 border-0'>
-                Latest News
+                Current News
             </ListGroup.Item>
             {Object.keys(news).length!==0 && news.data.news ? news.data.news.slice(0,11).map(d=>(
                 <ListGroup.Item id='news_element' style={{ borderRadius:10 }} key={d.id} className='my-2 border-0'>

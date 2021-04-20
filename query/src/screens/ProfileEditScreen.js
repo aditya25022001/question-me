@@ -5,9 +5,10 @@ import {  Button, Form, ListGroup} from 'react-bootstrap'
 import { Header } from '../components/Header'
 import { Footer } from '../components/Footer'
 import { auth, db } from '../firebase'
-import '../App.css'
-import { Snackbar } from '@material-ui/core'
+import { Snackbar, Tooltip } from '@material-ui/core'
 import Alert from '@material-ui/lab/Alert'
+import InfoRoundedIcon from '@material-ui/icons/InfoRounded';
+import '../App.css'
 
 export const ProfileEditScreen = ({history}) => {
     
@@ -42,7 +43,7 @@ export const ProfileEditScreen = ({history}) => {
             userName:name!=='' ? name : currentUser.userName,
             userHandle:handle!=='' ? handle : currentUser.userHandle,
             userDescription:description!=='' ? description : currentUser.userDescription,
-            subjects:[...currentUser.subjects,...subjects],
+            subjects:[...subjects],
             photo:profile.slice(0,4)==='http' ? profile : currentUser.photo
         },{merge:true})
         auth.currentUser.updateProfile({
@@ -96,7 +97,11 @@ export const ProfileEditScreen = ({history}) => {
                     </ListGroup.Item>
                     <ListGroup.Item className='mx-auto border-0 my-0 py-1'>
                         <Form.Group>
-                            <Form.Label>Subjects</Form.Label>
+                            <Form.Label className='align-items-center'>Subjects
+                                <Tooltip placement='right' style={{ color:'red' }} title='Enter all subjects from scratch'>
+                                    <InfoRoundedIcon style={{ fontSize:12, color:'gray' }} className='ml-2' />
+                                </Tooltip>
+                            </Form.Label>
                             <Form.Control id='edit_form_controls' className='border-0' style={{ borderRadius:10 }} type='text' as='textarea' rows={3} placeholder={currentUser.subjects} onChange={e => setSubjects([...e.target.value.split(',')])}></Form.Control>
                         </Form.Group>
                     </ListGroup.Item>

@@ -51,6 +51,21 @@
 #question_element {
   padding: 3%;
 }
+#question_element:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+#question_attributes {
+  box-shadow: 2px 2px 5px
+      rgb(219, 219, 219),
+    -2px -2px 5px rgb(255, 255, 255);
+  background-color: rgb(247, 247, 247);
+  border-radius: 10px;
+}
+#question_upvote_button,
+#question_downvote_button {
+  display: none;
+}
 #form_controls_register:focus,
 #form_control_forgot_password:focus,
 #form_controls_signin:focus,
@@ -179,6 +194,13 @@
   }
   #question_element {
     padding: 4%;
+  }
+  #side_votes {
+    display: none;
+  }
+  #question_upvote_button,
+  #question_downvote_button {
+    display: flex;
   }
 }
 @media screen and (max-width: 1025px) {

@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { ListGroup } from 'react-bootstrap'
-import { v4 } from 'uuid' 
 import { db } from '../firebase'
 import FlipMove from 'react-flip-move'
+import { Link } from 'react-router-dom'
 
 export const Question = () => {
 
@@ -21,8 +21,10 @@ export const Question = () => {
             </ListGroup.Item>
             <FlipMove>
                 {questions.length!==0 && questions && questions.map(question=>(
-                    <ListGroup.Item id='question_element' style={{ borderRadius:10}} key={question.id} className='mb-3 border-0'>
-                        {question.data.questionTitle}
+                    <ListGroup.Item id='question_element' key={question.id} style={{ borderRadius:10}} className='mb-3 border-0'>
+                        <Link to={`/question/${question.id}`} style={{ textDecoration:'none', color:'black' }}>
+                            {question.data.questionTitle}
+                        </Link>
                     </ListGroup.Item>
                 ))}
             </FlipMove>

@@ -6,9 +6,13 @@ import { db, auth } from '../firebase'
 import { Link } from 'react-router-dom';
 import { Footer } from '../components/Footer'
 import '../App.css'
+import { login } from '../features/userSlice';
+import { useDispatch } from 'react-redux';
 
 export const RegisterScreen = ({history}) => {
     
+    const dispatch = useDispatch()
+
     const [message,setMessage] = useState('')
     const [display,setDisplay] = useState(false)
     const [displayCreated,setDisplayCreated] = useState(false)
@@ -31,26 +35,32 @@ export const RegisterScreen = ({history}) => {
             setMessage('')
             auth.createUserWithEmailAndPassword(email,password)
             .then((userAuth) => {
-                userAuth.user.updateProfile({
+                    userAuth.user.updateProfile({
                     displayName:name,
                     photoURL:profile
                 })
-                db.collection('queryUsers').add({
-                    userName:name,
-                    userHandle:userHandle,
-                    userEmail:userAuth.user.email,
-                    userDescription:description,
-                    photo:profile,
-                    country:country,
-                    subjects:subjects.split(','),
-                    id:userAuth.user.uid,
-                    questions:[]
-                })
                 .then(()=>{
-                    auth.currentUser.sendEmailVerification()
-                    .then(()=>{
-                        setDisplayCreated(true)
+                    db.collection('queryUsers').add({
+                        userName:name,
+                        userHandle:userHandle,
+                        userEmail:userAuth.user.email,
+                        userDescription:description,
+                        photo:profile,
+                        country:country,
+                        subjects:subjects.split(','),
+                        id:userAuth.user.uid,
+                        questions:[]
                     })
+                    dispatch(login({
+                        email:userAuth.email,
+                        uid:userAuth.uid,
+                        displayName:name,
+                    }))
+                    setDisplayCreated(true)
+                })
+                .catch(error => {
+                    setDisplay(true)
+                    setMessage(error.message)
                 })
             })
             .catch(error => {
@@ -183,7 +193,7 @@ export const RegisterScreen = ({history}) => {
                         </Form.Group>
                     </ListGroup.Item>
                     <ListGroup.Item className='mx-auto text-center border-0 mt-0 pt-0 pb-4' style={{ borderBottomRightRadius: 50, borderBottomLeftRadius: 50 }}>
-                        <Button className='py-3' id='form_controls_register_submit' style={{ width: '100%', borderRadius: 150, color: 'black', border: 0 }} type='submit'>Sign Up</Button>
+                        <Button className='py-3' id='form_controls_register_submit' style={{ width: '100%', borderRadius: 150, color: 'black', border: 0 }} type='submit' onClick={e => submitHandler(e)}>Sign Up</Button>
                         <div className='mt-3' style={{ fontWeight: 500, fontSize: '1rem' }}>Already a member? 
                             <Link to='/signin' style={{ color:'black', textDecoration: 'underline' }} className='ml-1'>
                                 Sign In
@@ -195,7 +205,7 @@ export const RegisterScreen = ({history}) => {
                     <Alert variant='filled' severity="error">{message}</Alert>
                 </Snackbar>
                 <Snackbar open={displayCreated} autoHideDuration={4000} onClose={closeSnackbarCreated}>
-                    <Alert variant='filled' severity="success">Verify your account in your email</Alert>
+                    <Alert variant='filled' severity="success">Account created successfully</Alert>
                 </Snackbar>
             </ListGroup>
             <Footer/>

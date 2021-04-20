@@ -51,7 +51,11 @@ export const AskQuestionScreen = ({history}) => {
                 questionTitle:title,
                 questionDescription:question,
                 questionKeywords:keywords.split(','),
-                addedWhen:firebase.firestore.FieldValue.serverTimestamp()
+                addedWhen:firebase.firestore.FieldValue.serverTimestamp(),
+                upVotes:0,
+                downVotes:0,
+                questionAnswers:[]
+
             }).then(()=>{
                 db.collection('queryUsers').doc(currentUserId).set({
                     questions:[...currentUser.questions,uniqueID]

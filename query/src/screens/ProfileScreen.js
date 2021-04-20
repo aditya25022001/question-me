@@ -65,7 +65,10 @@ export const ProfileScreen = ({history}) => {
             <Header/>
             <Container className='mx-auto' id='profile_card'>
                 <Row className='border-bottom pb-3 align-items-center'>
-                    <Image className='mr-2 mb-2' src={currentUser.photo} thumbnail/>
+                    {currentUser.photo && currentUser.photo!=='' && currentUser.photo.slice(0,4)==='http'
+                    ?<Image className='mr-2 mb-2' src={currentUser.photo} thumbnail/>
+                    :<Image className='mr-2 mb-2' src='https://t4.ftcdn.net/jpg/03/46/93/61/360_F_346936114_RaxE6OQogebgAWTalE1myseY1Hbb5qPM.jpg' style={{ width:'40%' }} thumbnail/>
+                    }
                     <div>
                         <div className='mx-auto mt-0' ><span style={{ textDecoration: 'underline'}}>Name</span> : {currentUser.userName}</div>
                         <div className='mt-0'><span style={{ textDecoration: 'underline'}}>User Handle</span> : @{currentUser.userHandle}</div>
