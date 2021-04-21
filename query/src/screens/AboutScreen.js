@@ -29,10 +29,11 @@ export const AboutScreen = () => {
                 <p id='about_para'>
                     Follow tips given below to make your answer more understandable and an easy read.
                     <ul>
-                        <li>Write each paragraph in {"<p>...</p>"} if more than one paragraph are there </li>
-                        <li>If only one paragraph no need to write {"<p></p>"}</li>
-                        <li>If links are there enclose them in {"<a>..</a>"} tags </li>
-                        <li>If there is code present in your answer enclose them in {"<code>..</code>"} tags </li>
+                        <li>Don't use continuous words, make sure you use spaces between separate words</li>
+                        <li>Start each paragraph with <mark>{"<p>"}</mark> tag if more than one paragraph are there </li>
+                        <li>If only one paragraph no need to write <mark>{"<p>"}</mark></li>
+                        <li>If links are there enclose them within <mark>{"<p><a>...</a><p>"}</mark> tag </li>
+                        <li>If there is code present in your answer start them with <mark>{"<code>"}</mark> tag </li>
                     </ul>
                 </p>
                 <div id='about_headings' style={{ fontWeight:700, marginTop:'6vh' }}>Developer Side</div>

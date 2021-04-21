@@ -24,6 +24,16 @@ export const Answer = ({match}) => {
         })
     },[qid,match.params.id])
 
+    const setParagraph = (string) => {
+        const final = string.split('<p>')
+        const show =  final.map((each,index) => (
+            each.startsWith('<a>') && each.endsWith('</a>') ? <a key={index} href={each.slice(3,each.length-4)}>here</a> : <div  key={index}>{each}</div>
+        ))
+        return show
+    }
+
+    //  Execute < a > a b c d < / a >
+
     return (
         <Container>
         <ListGroup>
@@ -53,9 +63,9 @@ export const Answer = ({match}) => {
                         </div>
                     </Button>
                 </ListGroup>
-                <ListGroup id='answer'>
+                <ListGroup id='answer' style={{ width:'100%' }}>
                     <ListGroup.Item className='border-0 mb-3' id='answer_attributes'>
-                        {answer.data().answerContent}
+                        {answer.data().answerContent && setParagraph(answer.data().answerContent)}
                     </ListGroup.Item>
                     <div style={{ display: 'flex', flexDirection:'row', justifyContent: 'flex-end', alignItems: 'center'}}>
                         <Button variant='success' className='border-0 ml-auto mr-3' id='question_upvote_button'>
