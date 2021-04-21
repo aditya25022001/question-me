@@ -8,6 +8,9 @@ import { db, auth } from '../firebase'
 import { selectUser } from '../features/userSlice';
 import { Header } from '../components/Header'
 import { Footer } from '../components/Footer'
+import { Loader } from '../components/Loader'
+import { Answer } from '../components/Answer';
+import { PostAnswer } from '../components/PostAnswer';
 
 export const QuestionScreen = ({match, history}) => {
     
@@ -28,12 +31,21 @@ export const QuestionScreen = ({match, history}) => {
                     setUserFromDb(doc.data())
                 })
             })
+            .catch(err=>{
+                console.log(err.message);
+            })      
         })
+        .catch(err=>{
+            console.log(err.message);
+        })      
     },[questionId])
 
     return (
         <>
         <Header/>
+        {userFromDb && Object.keys(userFromDb).length===0
+        ?<Loader/>
+        :<>
         <Container className='mt-5' style={{ display: 'flex', flexDirection:'row'}} >
             <ListGroup className='mr-3' id='side_votes'>
                 <Button variant='success' className='border-0 mb-3 px-3 mr-auto' id='question_attributes_button'>
@@ -42,14 +54,14 @@ export const QuestionScreen = ({match, history}) => {
                             <ExpandLessIcon/>
                         </div>
                         <div>
-                            {question.upVotes}
+                            {question.upVotes && question.upVotes.length}
                         </div>
                     </div>
                 </Button>
                 <Button variant='danger' className='border-0 mb-3 px-3 mr-auto' id='question_attributes_button'>
                     <div className='text-center'>
                         <div>
-                            {question.upVotes}
+                            {question.downVotes && question.downVotes.length}
                         </div>
                         <div>
                             <ExpandMoreIcon/>
@@ -69,11 +81,11 @@ export const QuestionScreen = ({match, history}) => {
                 <div style={{ display: 'flex', flexDirection:'row', justifyContent: 'flex-end', alignItems: 'center'}}>
                     <Button variant='success' className='border-0 ml-auto mr-3' id='question_upvote_button'>
                         <ExpandLessIcon/>
-                        {question.upVotes}
+                        {question.upVotes && question.upVotes.length}
                     </Button>
                     <Button variant='danger' className='border-0 mr-3' id='question_downvote_button'>
                         <ExpandMoreIcon/>
-                        {question.downVotes}
+                        {question.downVotes && question.downVotes.length}
                     </Button>
                     <ListGroup.Item className='border-0 mb-3' id='question_attributes'>
                         <div style={{ display: 'flex', flexDirection:'row', alignItems: 'center'}}>
@@ -88,6 +100,10 @@ export const QuestionScreen = ({match, history}) => {
                 </div>
             </ListGroup>
         </Container>
+        <Answer match={match}/>
+        {user && auth.currentUser &&  <PostAnswer match={match}/>}
+        </>
+        }
         <Footer/>
         </>
     )

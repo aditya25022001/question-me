@@ -37,8 +37,6 @@ export const ProfileScreen = ({history}) => {
         })
     }
     
-    console.log(currentUserId);
-    
     useEffect(()=>{
         if(user){
             db.collection('queryUsers').where("id","==",user.uid).get().then((docs) => {
@@ -81,7 +79,7 @@ export const ProfileScreen = ({history}) => {
                 </Row>
                 <Row className="border-bottom py-3">
                     <div>
-                        <div className='mt-0'><span style={{ textDecoration: 'underline'}}>Answers</span> : {currentUser.answers ? currentUser.answers : 'Not answered'}</div>
+                        <div className='mt-0'><span style={{ textDecoration: 'underline'}}>Answers</span> : {currentUser.answers && currentUser.answers.length!==0 ? currentUser.answers.length : 'Not answered'}</div>
                         <div className='mt-0'><span style={{ textDecoration: 'underline'}}>Questions</span> : {currentUser.questions && currentUser.questions.length!==0 ? currentUser.questions.length : 'Not asked'}</div>
                         <div className='mt-0'><span style={{ textDecoration: 'underline'}}>Subjects</span> :
                             {currentUser.subjects && currentUser.subjects.length!==0 

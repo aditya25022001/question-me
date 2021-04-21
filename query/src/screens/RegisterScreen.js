@@ -49,7 +49,8 @@ export const RegisterScreen = ({history}) => {
                         country:country,
                         subjects:subjects.split(','),
                         id:userAuth.user.uid,
-                        questions:[]
+                        questions:[],
+                        answers:[]
                     })
                     dispatch(login({
                         email:userAuth.email,

@@ -23,7 +23,17 @@ export const AboutScreen = () => {
                         <li>Post your question in well formatted manner</li>
                         <li>Check for your answer when you get one</li>
                     </ul>
-                    Best practice is to upvote an answer if you find it useful ( you may downvote it too if not useful ) and write comment if you suggest some edits!
+                    Best practice is to upvote an answer if you find it useful ( you may downvote it too if not useful ).
+                </p>
+                <div id='about_headings' style={{ fontWeight:700, marginTop:'6vh' }}>How to write answers?</div>
+                <p id='about_para'>
+                    Follow tips given below to make your answer more understandable and an easy read.
+                    <ul>
+                        <li>Write each paragraph in {"<p>...</p>"} if more than one paragraph are there </li>
+                        <li>If only one paragraph no need to write {"<p></p>"}</li>
+                        <li>If links are there enclose them in {"<a>..</a>"} tags </li>
+                        <li>If there is code present in your answer enclose them in {"<code>..</code>"} tags </li>
+                    </ul>
                 </p>
                 <div id='about_headings' style={{ fontWeight:700, marginTop:'6vh' }}>Developer Side</div>
                 <p id='about_para'>

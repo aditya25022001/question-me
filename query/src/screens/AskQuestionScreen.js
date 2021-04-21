@@ -24,7 +24,8 @@ export const AskQuestionScreen = ({history}) => {
     if(!user){
         history.push('/')
     }
-    
+
+
     useEffect(()=>{
         if(user){
             db.collection('queryUsers').where("id","==",user.uid).get().then((docs) => {
@@ -52,8 +53,8 @@ export const AskQuestionScreen = ({history}) => {
                 questionDescription:question,
                 questionKeywords:keywords.split(','),
                 addedWhen:firebase.firestore.FieldValue.serverTimestamp(),
-                upVotes:0,
-                downVotes:0,
+                upVotes:[],
+                downVotes:[],
                 questionAnswers:[]
 
             }).then(()=>{
