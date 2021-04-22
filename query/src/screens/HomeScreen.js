@@ -13,7 +13,7 @@ export const HomeScreen = ({history}) => {
     
     const [news,setNews] = useState([])
 
-    const apikeys = ['8XrSXUWBhhltVgHSnBCsVEVVFeuCsVs1JeJP19y8JgZGjr3Z','iPow3cfGp7lEOVcLYiQVUB2zb3Xt-jW1HFfIdTkePISomzzU']
+    const apikeys = [process.env.REACT_APP_NEWS_API_ONE,process.env.REACT_APP_NEWS_API_TWO]
 
     const number = Math.floor(Math.random()*10)
 
