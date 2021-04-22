@@ -83,8 +83,8 @@ export const ProfileScreen = ({history}) => {
                         <div className='mt-0'><span style={{ textDecoration: 'underline'}}>Questions</span> : {currentUser.questions && currentUser.questions.length!==0 ? currentUser.questions.length : 'Not asked'}</div>
                         <div className='mt-0'><span style={{ textDecoration: 'underline'}}>Subjects</span> :
                             {currentUser.subjects && currentUser.subjects.length!==0 
-                            ? currentUser.subjects.map(subject => (
-                                <li style={{ textDecoration:'none' }}>{subject}</li>
+                            ? currentUser.subjects.map((subject,index) => (
+                                <li style={{ textDecoration:'none' }} key={index} >{subject}</li>
                             ))
                             : <span>None</span>
                             }

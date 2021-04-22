@@ -4,6 +4,8 @@ import InfoTwoToneIcon from '@material-ui/icons/InfoTwoTone';
 import { Link } from 'react-router-dom'
 import { auth, db } from '../firebase'
 import firebase from 'firebase'
+import { Snackbar } from '@material-ui/core';
+import Alert from '@material-ui/lab/Alert';
 
 export const PostAnswer = ({history, match}) => {
 
@@ -11,6 +13,7 @@ export const PostAnswer = ({history, match}) => {
     const [qid,setQid] = useState('')
     const [currentUser, setCurrentUser] = useState({})
     const [currentUserId, setCurrentUserId] = useState('')
+    const [display, setDisplay] = useState(false)
 
     useEffect(()=>{
         db.collection('questions').doc(match.params.id).get().then((doc)=>{
@@ -28,21 +31,30 @@ export const PostAnswer = ({history, match}) => {
 
     const submitHandler = (e) => {
         const uniqueID = auth.currentUser.uid+Date.now()
-        db.collection('queryUsers').doc(currentUserId).set({
-            answers:[...currentUser.answers,uniqueID]
-        },{merge:true})
-        setAnswer('')
-        db.collection('answers').add({
-            addedWhen:firebase.firestore.FieldValue.serverTimestamp(),
-            byUserId:auth.currentUser.uid,
-            byUserName:auth.currentUser.displayName,
-            answerContent:answer,
-            byUserImage:auth.currentUser.photoURL,
-            answerID:uniqueID,
-            upVotes:[],
-            downVotes:[],
-            questionId:qid
-        })
+        if(answer!==''){
+            db.collection('queryUsers').doc(currentUserId).update({
+                answers:firebase.firestore.FieldValue.arrayUnion(uniqueID)
+            })
+            setAnswer('')
+            db.collection('answers').add({
+                addedWhen:firebase.firestore.FieldValue.serverTimestamp(),
+                byUserId:auth.currentUser.uid,
+                byUserName:currentUser.userName,
+                answerContent:answer,
+                byUserImage:currentUser.photo,
+                answerID:uniqueID,
+                upVotes:[auth.currentUser.uid],
+                downVotes:[auth.currentUser.uid],
+                questionId:qid
+            })
+        }
+        else{
+            setDisplay(true)
+        }
+    }
+
+    const closeSnackbar = () => {
+        setDisplay(false)
     }
 
     return (
@@ -74,6 +86,9 @@ export const PostAnswer = ({history, match}) => {
                 </ListGroup.Item>
                 <Button id='submit_button' className='mt-2 px-5 mr-auto border-0' onClick={e=>submitHandler(e)} type='submit' variant='light'>Post </Button>
             </ListGroup>
+            <Snackbar open={display} autoHideDuration={2000} onClose={closeSnackbar}>
+                <Alert variant='filled' severity="error">Answer cannot be empty</Alert>
+            </Snackbar>
         </Container>
     )
 }

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Button, Form, Nav, Navbar, NavDropdown } from 'react-bootstrap'
 import MenuOpenIcon from '@material-ui/icons/MenuOpen';
 import PersonIcon from '@material-ui/icons/Person';
@@ -12,15 +12,23 @@ import { logout, selectUser } from '../features/userSlice';
 import { Link } from 'react-router-dom'
 import { auth } from '../firebase';
 
-export const Header = () => {
+export const Header = ({history}) => {
     
     const user = useSelector(selectUser)
+
+    const [searchKey, setSearchKey] = useState('')
 
     const dispatch = useDispatch()
 
     const logoutHandler = () => {
         dispatch(logout())
         auth.signOut()
+    }
+
+    const submitHandler = (e) => {
+        e.preventDefault()
+        history.push(`/search/${searchKey}`)
+        setSearchKey('')
     }
 
     return (
@@ -36,15 +44,24 @@ export const Header = () => {
             </span>
         </Navbar.Toggle>
         <div id='header_form_control'>
-            <Form className='ml-auto d-flex flex-direction-row'>
+            <Form onSubmit={submitHandler} className='ml-auto d-flex flex-direction-row'>
                 <Form.Control 
                     id='header_form_control_input' 
                     style={{ borderRadius:150 }}
                     className='ml-auto mr-3' 
                     type='text'
+                    value={searchKey}
+                    onChange={e=>setSearchKey(e.target.value)}
                     placeholder='Search keywords or questions'
                 />
-                <Button style={{ color:'white', backgroundColor:'rgb(150,21,41)', borderRadius: 150}} className='border-0' id='header_button' type='submit'>Search</Button>
+                <Button 
+                    style={{ color:'white', backgroundColor:'rgb(150,21,41)', borderRadius: 150}} 
+                    className='border-0' 
+                    id='header_button' 
+                    type='submit'
+                >
+                    Search
+                </Button>
             </Form>
         </div>
         <Navbar.Collapse id="responsive-navbar-nav">

@@ -53,14 +53,12 @@ export const AskQuestionScreen = ({history}) => {
                 questionDescription:question,
                 questionKeywords:keywords.split(','),
                 addedWhen:firebase.firestore.FieldValue.serverTimestamp(),
-                upVotes:[],
-                downVotes:[],
-                questionAnswers:[]
-
+                upVotes:[user.uid],
+                downVotes:[user.uid]
             }).then(()=>{
-                db.collection('queryUsers').doc(currentUserId).set({
-                    questions:[...currentUser.questions,uniqueID]
-                },{merge:true})
+                db.collection('queryUsers').doc(currentUserId).update({
+                    questions:firebase.firestore.FieldValue.arrayUnion(uniqueID)
+                })
                 setDisplayAdded(true)
             })
         }
@@ -88,7 +86,7 @@ export const AskQuestionScreen = ({history}) => {
                             style={{ borderRadius:150 }} 
                             className='border-0'  
                             type='text' 
-                            placeholder='Give a catchy title to your question' 
+                            placeholder='Give easy to search title' 
                             value={title}
                             onChange={e => setTitle(e.target.value)}
                         />

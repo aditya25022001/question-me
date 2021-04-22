@@ -18,24 +18,23 @@ export const AboutScreen = () => {
                 <div id='about_headings' style={{ fontWeight:700, marginTop:'6vh' }}>How to use?</div>
                 <p id='about_para'>
                     Just three easy steps! to get your solution:
-                    <ul>
-                        <li>Sign In / Sign Up using email address and password</li>
-                        <li>Post your question in well formatted manner</li>
-                        <li>Check for your answer when you get one</li>
-                    </ul>
-                    Best practice is to upvote an answer if you find it useful ( you may downvote it too if not useful ).
                 </p>
+                <ul>
+                    <li>Sign In / Sign Up using email address and password</li>
+                    <li>Post your question in well formatted manner</li>
+                    <li>Check for your answer when you get one</li>
+                </ul>
+                    Best practice is to upvote an answer if you find it useful ( you may downvote it too if not useful ).
                 <div id='about_headings' style={{ fontWeight:700, marginTop:'6vh' }}>How to write answers?</div>
                 <p id='about_para'>
                     Follow tips given below to make your answer more understandable and an easy read.
-                    <ul>
-                        <li>Don't use continuous words, make sure you use spaces between separate words</li>
-                        <li>Start each paragraph with <mark>{"<p>"}</mark> tag if more than one paragraph are there </li>
-                        <li>If only one paragraph no need to write <mark>{"<p>"}</mark></li>
-                        <li>If links are there enclose them within <mark>{"<p><a>...</a><p>"}</mark> tag </li>
-                        <li>If there is code present in your answer start them with <mark>{"<code>"}</mark> tag </li>
-                    </ul>
                 </p>
+                <ul>
+                    <li>Don't use continuous words, make sure you use spaces between separate words</li>
+                    <li>Start each paragraph with <mark>{"<p>"}</mark> tag if more than one paragraph are there </li>
+                    <li>If only one paragraph no need to write <mark>{"<p>"}</mark></li>
+                    <li>If links are there enclose them within <mark>{"<p><a>...</a><p>"}</mark> tag </li>
+                </ul>
                 <div id='about_headings' style={{ fontWeight:700, marginTop:'6vh' }}>Developer Side</div>
                 <p id='about_para'>
                     The technology stack used in this project is very powerful ReactJS, Material UI, React Bootstrap, Firebase, Firebase Authentication and Firebase Firestore.
@@ -55,7 +54,8 @@ export const AboutScreen = () => {
                         style={{ textDecoration:'underline', color:'black' }}
                         rel='noreferrer noopener'
                     >portfolio</a> if found it useful and good enough and want to work with or work on a project.
-                    <p>CHEERS!</p>
+                    <br/>
+                    CHEERS!
                 </p>
             </div>
             <Footer/>
